@@ -1,0 +1,11 @@
+# Normalize line endings: store as LF in the repo, check out as LF everywhere.
+# This eliminates the "LF will be replaced by CRLF" warnings.
+* text=auto eol=lf
+
+# Explicitly mark binary files so Git never mangles them.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary

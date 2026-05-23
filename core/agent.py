@@ -25,9 +25,11 @@ from google import genai
 # The key must match exactly what the LLM is told to use in tool_name.
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from tools.calculator import calculate  # noqa: E402
+from tools.search import search_web     # noqa: E402
 
 TOOL_REGISTRY: dict[str, Any] = {
     "calculator": calculate,
+    "search": search_web,
 }
 
 # ── System prompt ─────────────────────────────────────────────────────────────
@@ -56,11 +58,16 @@ RULES
     to give a complete, correct answer to the user. When true, put the
     full answer inside "thought" (tool_name and tool_input must be null).
 4.  Never guess a numeric result — always call the calculator tool.
+5.  For any question about current events, recent news, real-time data,
+    or facts you are uncertain about, always call the search tool.
 
 AVAILABLE TOOLS
 ===============
 - calculator : Evaluates a safe arithmetic expression string.
                Example input: "(3 + 5) * 12 / 2"
+- search     : Finds recent information on the internet.
+               Input should be a concise search query string.
+               Example input: "latest Python 3.13 release date"
 
 EXAMPLE INTERACTION
 ===================
